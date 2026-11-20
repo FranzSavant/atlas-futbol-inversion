@@ -4,276 +4,340 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Fútbol amateur, medido como profesional — modelo de negocio</title>
-<meta name="description" content="Modelo de negocio: servicio de grabación y análisis de fútbol amateur en El Salvador. Números reales de costo, punto de equilibrio y riesgos.">
+<title>Fútbol amateur, medido como profesional</title>
+<meta name="description" content="Modelo de negocio visual: grabación y análisis de fútbol amateur. Costos reales, punto de equilibrio y tres formas de entrar.">
 <style>
-  :root{
-    --papel:#f6f3ec;
-    --tinta:#17150f;
-    --tinta-suave:#56503f;
-    --linea:#d8d2c4;
-    --verde:#1c4b3c;
-    --verde-claro:#e6ede8;
-    --rojo:#8a2d1d;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-    --serif:ui-serif,"Iowan Old Style",Palatino,Georgia,serif;
-    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;background:var(--papel);color:var(--tinta);
-    font-family:var(--sans);font-size:17px;line-height:1.62;
-    -webkit-font-smoothing:antialiased;
-  }
-  .hoja{max-width:780px;margin:0 auto;padding:56px 24px 96px}
-  header{border-bottom:2px solid var(--tinta);padding-bottom:28px;margin-bottom:44px}
-  .kicker{
-    font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--tinta-suave);margin:0 0 18px
-  }
-  h1{
-    font-family:var(--serif);font-weight:600;font-size:clamp(34px,6vw,54px);
-    line-height:1.06;letter-spacing:-.02em;margin:0 0 18px
-  }
-  .bajada{font-size:clamp(17px,2.4vw,20px);color:var(--tinta-suave);margin:0;max-width:62ch}
-  h2{
-    font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.6vw,31px);
-    line-height:1.18;letter-spacing:-.01em;margin:0 0 8px
-  }
-  .num{
-    font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--verde);
-    text-transform:uppercase;display:block;margin-bottom:10px
-  }
-  section{padding:38px 0;border-bottom:1px solid var(--linea)}
-  section:last-of-type{border-bottom:none}
-  p{margin:0 0 16px}
-  p+h3{margin-top:26px}
-  h3{font-family:var(--sans);font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin:28px 0 10px}
-  strong{font-weight:650}
-  em{font-style:italic;color:var(--tinta)}
-  .destacado{
-    font-family:var(--serif);font-size:clamp(20px,3vw,25px);line-height:1.4;
-    border-left:3px solid var(--verde);padding:4px 0 4px 20px;margin:26px 0;color:var(--tinta)
-  }
-  ul,ol{margin:0 0 18px;padding-left:22px}
-  li{margin-bottom:9px}
-  li::marker{color:var(--verde)}
-  table{
-    width:100%;border-collapse:collapse;margin:20px 0 7px;
-    font-size:15px;background:#fffdf8;
-  }
-  caption{
-    text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--tinta-suave);padding-bottom:10px
-  }
-  th,td{padding:11px 12px;border-bottom:1px solid var(--linea);text-align:left;vertical-align:top}
-  th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta-suave);background:#f0ece1}
-  td.cifra{font-family:var(--mono);font-size:14px;white-space:nowrap}
-  .nota{font-size:14px;color:var(--tinta-suave);margin:0 0 20px}
-  .pasos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea);margin:24px 0 30px}
-  .paso{background:#fffdf8;padding:18px 16px}
-  .paso b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--verde);margin-bottom:8px}
-  .paso span{font-size:15px;line-height:1.45;display:block}
-  .riesgo{background:#fffdf8;border:1px solid var(--linea);padding:20px 22px;margin:0 0 34px}
-  .riesgo li{margin-bottom:11px}
-  .dato{color:var(--rojo);font-weight:650}
-  .cierre{background:var(--verde);color:#f3efe6;margin:34px -24px -96px;padding:46px 24px 64px}
-  .cierre h2{color:#fff}
-  .cierre .num{color:#a8c7b8}
-  .cierre a{color:#fff}
-  .cierre li::marker{color:#a8c7b8}
-  .cierre em{color:#fff}
-  .cierre .firma{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#b9d0c4;margin-top:26px}
-  .quote{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.5;color:var(--verde);margin:22px 0}
-  .dos{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0}
-  .caja{border:1px solid var(--linea);background:#fffdf8;padding:18px}
-  .caja h3{margin-top:0}
-  @media (max-width:620px){
-    .dos{grid-template-columns:1fr}
-    body{font-size:16px}
-    .hoja{padding:40px 20px 80px}
-    .cierre{margin:34px -20px -80px;padding:40px 20px 56px}
-    table{font-size:14px}
-    th,td{padding:9px}
-  }
-  @media print{
-    body{background:#fff}
-    .cierre{background:#fff;color:#000;margin:0;padding:24px 0 0}
-    .cierre h2{color:#000}
-    .cierre .firma{color:#555}
-    section{page-break-inside:avoid}
-  }
+:root{
+  --noche:#0b0c0a;
+  --carta:#141612;
+  --carta-alta:#1b1e18;
+  --hueso:#f4f2ea;
+  --gris:#9c9c90;
+  --lima:#d3f26b;
+  --lima-apag:#7d8d4a;
+  --rojo:#e08a6a;
+  --linea:#2a2e26;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--noche);color:var(--hueso);
+  font-family:var(--sans);font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+section{padding:74px 0;border-top:1px solid var(--linea)}
+.eyebrow{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--lima);
+  margin:0 0 18px;font-weight:600
+}
+h1{font-size:clamp(33px,5.2vw,58px);line-height:.98;letter-spacing:-.035em;font-weight:800;margin:0 0 18px}
+h2{font-size:clamp(26px,4.4vw,44px);line-height:1.05;letter-spacing:-.03em;font-weight:800;margin:0 0 12px}
+h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);font-weight:600;margin:0 0 8px}
+p{margin:0 0 12px;color:#d9d7cd}
+.lead{font-size:clamp(18px,2.4vw,23px);color:var(--hueso);max-width:34ch;line-height:1.35}
+.sub{color:var(--gris);font-size:15px;max-width:60ch}
+b,strong{color:var(--hueso);font-weight:700}
+.num{color:var(--lima)}
+
+/* HERO */
+.hero{padding:54px 0 60px;border-top:none}
+.marca{display:flex;align-items:center;gap:10px;margin-bottom:40px}
+.punto{width:9px;height:9px;border-radius:50%;background:var(--lima);box-shadow:0 0 0 4px rgba(211,242,107,.14)}
+.marca span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:34px}
+.hero-grid > *{min-width:0}
+@media(min-width:900px){ .hero-grid{grid-template-columns:1.05fr .95fr;align-items:center;gap:44px} }
+.video{
+  position:relative;border-radius:16px;overflow:hidden;background:#000;
+  border:1px solid var(--linea);aspect-ratio:9/16;margin:0 auto;width:100%;max-width:340px
+}
+@media(min-width:900px){ .video{max-width:100%;max-height:66vh} }
+.video video{width:100%;height:100%;object-fit:cover;display:block}
+.video-tag{
+  position:absolute;left:12px;top:12px;background:rgba(11,12,10,.72);backdrop-filter:blur(6px);
+  color:var(--hueso);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 10px;border-radius:99px;border:1px solid rgba(244,242,234,.16)
+}
+.video-pie{font-size:12.5px;color:var(--gris);margin:10px 0 0;text-align:center}
+.video-pie a{color:var(--lima);text-decoration:none;border-bottom:1px solid rgba(211,242,107,.35)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chip{
+  display:inline-block;border:1px solid var(--linea);border-radius:99px;padding:9px 15px;
+  font-size:14px;color:#d9d7cd
+}
+.chip b{color:var(--lima)}
+
+/* RECIBE */
+.cuatro{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
+@media(min-width:760px){ .cuatro{grid-template-columns:repeat(4,1fr)} }
+.carta{
+  background:var(--carta);border:1px solid var(--linea);border-radius:14px;padding:20px 18px;
+  min-height:150px;display:flex;flex-direction:column;gap:12px;justify-content:space-between
+}
+.carta svg{width:30px;height:30px;stroke:var(--lima);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.carta p{margin:0;font-size:14.5px;line-height:1.35;color:var(--hueso)}
+.carta span{color:var(--gris);font-size:12.5px;display:block;margin-top:4px}
+
+/* CIFRA GRANDE */
+.cifra{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;margin:14px 0 10px
+}
+.cifra > b{font-size:clamp(56px,13vw,116px);line-height:.85;letter-spacing:-.05em;font-weight:800;color:var(--lima)}
+.fuente{font-size:12.5px;color:#7d7d72;margin-top:18px}
+
+/* BARRAS */
+.barras{margin-top:34px;display:grid;gap:26px}
+.fila{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:end}
+.fila .nombre{font-size:15px;font-weight:600}
+.fila .valor{font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.03em;color:var(--lima);font-variant-numeric:tabular-nums}
+.pista{grid-column:1/-1;height:12px;background:#1d201a;border-radius:99px;overflow:hidden}
+.pista i{display:block;height:100%;background:linear-gradient(90deg,#a9c94e,#d3f26b);border-radius:99px}
+.pista.apagada i{background:#3b4433}
+.pie-fila{grid-column:1/-1;display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--gris)}
+.pie-fila s{text-decoration:none;color:#8f8f83}
+
+/* PUNTOS */
+.equilibrio{display:grid;grid-template-columns:1fr;gap:30px;align-items:center;margin-top:30px}
+@media(min-width:820px){ .equilibrio{grid-template-columns:1fr 1fr} }
+.rejilla{display:grid;grid-template-columns:repeat(8,1fr);gap:9px;max-width:340px}
+.rejilla i{
+  aspect-ratio:1;border-radius:50%;background:var(--lima);display:block;
+  animation:pop .5s ease both
+}
+.rejilla i:nth-child(n+25){background:var(--lima)}
+@keyframes pop{from{transform:scale(.2);opacity:0}to{transform:scale(1)}}
+.leyenda{font-size:13px;color:var(--gris);margin-top:14px}
+.leyenda b{color:var(--lima)}
+
+/* TRES FORMAS */
+.tres{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px}
+@media(min-width:840px){ .tres{grid-template-columns:repeat(3,1fr)} }
+.forma{
+  background:var(--carta);border:1px solid var(--linea);border-radius:16px;padding:24px 20px;
+  display:flex;flex-direction:column;gap:10px
+}
+.forma.destacada{background:linear-gradient(175deg,#1d2415,#141612);border-color:#465326}
+.forma .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+.forma .precio{font-size:clamp(30px,4.6vw,40px);font-weight:800;letter-spacing:-.035em;line-height:1;color:var(--lima)}
+.forma p{font-size:14px;color:#cfcdc3;margin:0}
+.forma small{color:var(--gris);font-size:12.5px;line-height:1.4;margin-top:auto;display:block}
+.estrella{color:var(--lima);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+
+/* RIESGOS */
+.riesgos{display:grid;gap:1px;background:var(--linea);border:1px solid var(--linea);border-radius:14px;overflow:hidden;margin-top:28px}
+.riesgo{background:var(--carta);padding:18px 20px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.riesgo i{
+  font-style:normal;font-weight:800;color:var(--rojo);font-size:14px;
+  border:1px solid rgba(224,138,106,.4);border-radius:50%;width:28px;height:28px;
+  display:grid;place-items:center;flex:none
+}
+.riesgo p{margin:0;font-size:14.5px;color:#d9d7cd}
+.riesgo b{color:var(--hueso)}
+
+/* PASOS */
+.pasos{display:grid;grid-template-columns:1fr;gap:12px;margin-top:28px;counter-reset:p}
+@media(min-width:760px){ .pasos{grid-template-columns:repeat(3,1fr)} }
+.paso{
+  background:var(--carta);border:1px solid var(--linea);border-radius:14px;padding:22px 18px
+}
+.paso b{display:block;font-size:34px;line-height:1;color:var(--lima);letter-spacing:-.04em;margin-bottom:12px}
+.paso p{margin:0;font-size:14.5px;color:#d9d7cd}
+
+/* CIERRE */
+.cierre{background:var(--lima);color:#12140d;padding:64px 0;border-top:none}
+.cierre h2{color:#12140d}
+.cierre p{color:#242a14}
+.cierre .eyebrow{color:#3f4a1c}
+.cierre .nota{font-size:12.5px;color:#414a22;margin-top:26px}
+.cierre .promesa{font-size:clamp(19px,2.6vw,25px);line-height:1.35;font-weight:600;max-width:40ch;margin:0}
+footer{padding:26px 0 40px;color:#6f6f66;font-size:12px;border-top:1px solid var(--linea)}
+footer a{color:#8f8f83}
+@media print{
+  body{background:#fff;color:#000}
+  .video{display:none}
+  section{border-color:#ddd}
+  .cifra b,.num,.forma .precio{color:#33500a}
+}
 </style>
 </head>
 <body>
-<div class="hoja">
 
-<header>
-  <p class="kicker">Modelo de negocio · para Irving · noviembre 2026</p>
-  <h1>Fútbol amateur,<br>medido como profesional</h1>
-  <p class="bajada">Un servicio que graba el partido del equipo de barrio con cámara de campo completo y devuelve a cada jugador sus números, su mapa de calor y un video solo suyo. La cámara la pone la inversión. La operación la corre Leo.</p>
+<header class="hero wrap">
+  <div class="marca"><span class="punto"></span><span>Modelo de negocio · para Irving · noviembre 2026</span></div>
+  <div class="hero-grid">
+    <div>
+      <h1>Fútbol de barrio,<br>datos de profesional.</h1>
+      <p class="lead">El equipo juega. La cámara graba todo el campo. Cada jugador recibe sus números y su video.</p>
+      <div class="hero-cta">
+        <span class="chip">Mercado que ya cobra: <b>USD 105</b> por jornada</span>
+        <span class="chip">La cámara la pone <b>la inversión</b></span>
+      </div>
+    </div>
+    <figure class="video" style="margin:0">
+      <span class="video-tag">El servicio, en 30 s</span>
+      <video id="ref" controls muted loop playsinline preload="metadata"
+             poster="referencia-poster.jpg" aria-label="Video de referencia: VeoProChile, arriendo de cámara Veo con análisis de fútbol">
+        <source src="referencia-veopro.mp4" type="video/mp4">
+      </video>
+    </figure>
+  </div>
+  <p class="video-pie">Referencia real del mercado: <a href="https://www.instagram.com/reel/Df4mGVsNAJc/" target="_blank" rel="noopener">VeoProChile, Santiago de Chile</a> · contenido de ellos, no una simulación</p>
 </header>
 
-<section>
-  <span class="num">01 · La oportunidad</span>
-  <h2>El mercado no es una idea: ya cobra</h2>
-  <p>En Santiago de Chile, <strong>VeoProChile</strong> arrienda una cámara Veo por jornada y entrega análisis con inteligencia artificial. Precio publicado: <strong>CLP $100.000 el día</strong> (≈ <span class="dato">USD 105</span>), despacho desde CLP $15.000, entrega en 48 horas, dos cámaras por horario, foco en fútbol amateur.</p>
-  <p>Lo que venden, palabra por palabra del video de su cuenta:</p>
-  <ul>
-    <li><strong>Ficha individual:</strong> goles, asistencias, tiros, kilómetros recorridos, velocidad máxima.</li>
-    <li><strong>Mapa de calor:</strong> por dónde jugó de verdad.</li>
-    <li><strong>Video solo suyo:</strong> cada jugada en que participó, en ataque y en defensa, con un círculo verde que lo marca.</li>
-    <li><strong>Minimapa:</strong> la jugada desde arriba y la distancia entre jugadores.</li>
-  </ul>
-  <p>Sin chalecos GPS, sin relojes: todo sale del video. El argumento de venta que usan es el que funciona en cualquier cancha del mundo:</p>
-  <p class="quote">“Ya no es tu palabra contra la del resto: tienes el video y tienes los datos.”</p>
-  <p>Ese modelo existe y alguien paga por él. Lo que no existe todavía es <strong>alguien que lo haga en El Salvador</strong>.</p>
+<section class="wrap">
+  <p class="eyebrow">Lo que recibe cada jugador</p>
+  <h2>Cuatro cosas que hoy nadie le da</h2>
+  <div class="cuatro">
+    <div class="carta">
+      <svg viewBox="0 0 24 24"><path d="M4 19V5h16v14z"/><path d="M8 15v-4M12 15V8M16 15v-6"/></svg>
+      <p>Su ficha<span>Goles, asistencias, tiros, kilómetros, velocidad máxima.</span></p>
+    </div>
+    <div class="carta">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 12h18M9 5v14M15 10v4"/></svg>
+      <p>Su mapa de calor<span>Por dónde jugó de verdad, no dónde cree.</span></p>
+    </div>
+    <div class="carta">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M10 9l5 3-5 3z"/></svg>
+      <p>Un video solo suyo<span>Cada jugada en que participó, marcado en pantalla.</span></p>
+    </div>
+    <div class="carta">
+      <svg viewBox="0 0 24 24"><circle cx="7" cy="8" r="2"/><circle cx="17" cy="16" r="2"/><path d="M9 8h6M7 10v4h8"/></svg>
+      <p>El minimapa<span>La jugada desde arriba y las distancias entre jugadores.</span></p>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:18px">Sin chalecos GPS. Sin relojes. Todo sale del video.</p>
 </section>
 
-<section>
-  <span class="num">02 · Cómo funciona</span>
-  <h2>Cuatro pasos, un día de trabajo</h2>
+<section class="wrap">
+  <p class="eyebrow">El mercado no es una idea</p>
+  <div class="cifra">
+    <b>USD 105</b>
+  </div>
+  <p class="lead" style="max-width:44ch">Es lo que cobra VeoProChile por <strong>un día de cámara + análisis</strong>, con entrega en 48 h.</p>
+  <p class="sub">Ese precio existe y alguien lo paga. En El Salvador no lo hace nadie todavía.</p>
+  <p class="fuente">Fuente: tarifa publicada en eproducciones.cl (CLP $100.000/día + despacho desde CLP $15.000), noviembre 2026.</p>
+</section>
+
+<section class="wrap">
+  <p class="eyebrow">Cuánto cuesta entrar</p>
+  <h2>Tres equipos, tres precios</h2>
+  <div class="barras">
+    <div class="fila">
+      <div class="nombre">Veo Cam 3 <span class="sub">— campo completo, dato por jugador</span></div>
+      <div class="valor">$3,396</div>
+      <div class="pista"><i style="width:100%"></i></div>
+      <div class="pie-fila"><span>cámara $1,299 + trípode $299</span><span>suscripción $999/año + análisis $799/año</span><s>año 2: $1,798</s></div>
+    </div>
+    <div class="fila">
+      <div class="nombre">XbotGo Falcon <span class="sub">— sigue el balón, no a los de atrás</span></div>
+      <div class="valor">$1,469</div>
+      <div class="pista"><i style="width:43%"></i></div>
+      <div class="pie-fila"><span>cámara $799 + trípode $190</span><span>informes $23.99/partido</span><s>año 2: ~$480</s></div>
+    </div>
+    <div class="fila">
+      <div class="nombre">Ballr Standard <span class="sub">— dos lentes fijos 4K</span></div>
+      <div class="valor">$1,329</div>
+      <div class="pista"><i style="width:39%"></i></div>
+      <div class="pie-fila"><span>cámara $849</span><span>análisis por partido</span><s>año 2: variable</s></div>
+    </div>
+  </div>
+  <p class="fuente">Precios de lista en EE. UU., noviembre 2026. Antes de envío, aduana e impuestos.</p>
+  <div class="carta" style="margin-top:24px">
+    <p style="font-size:clamp(19px,2.6vw,24px);font-weight:700;line-height:1.3">La cámara no es lo caro.<br><span class="num">La suscripción sí: $1,798 cada año, haya partidos o no.</span></p>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="eyebrow">Cuándo se paga sola</p>
+  <h2>32 jornadas</h2>
+  <div class="equilibrio">
+    <div>
+      <p class="sub" style="max-width:none">Una Veo completa del primer año cuesta <b>$3,396</b>. Vendiendo a la referencia chilena de <b>$105</b> la jornada, el equipo se paga con 32 jornadas grabadas.</p>
+      <p class="sub" style="max-width:none">A 4 jornadas por mes: <b>8 meses</b>. Si la misma jornada se le vende a varios equipos, la mitad.</p>
+    </div>
+    <div>
+      <div class="rejilla" id="rejilla" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <p class="leyenda"><b>32 puntos</b> = 32 jornadas × $105 = $3,396, el equipo pagado. De ahí en adelante cada jornada es casi toda ganancia.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="eyebrow">Qué haría tu plata</p>
+  <h2>Tres formas de entrar</h2>
+  <div class="tres">
+    <div class="forma">
+      <span class="tag">Comprar la cámara</span>
+      <span class="precio">$3,396</span>
+      <p>Tu capital compra equipo y suscripción. Leo opera, vende y es la cara con los equipos.</p>
+      <small>Riesgo alto: el fierro se deprecia y la suscripción corre igual.</small>
+    </div>
+    <div class="forma">
+      <span class="tag">Capital de arranque</span>
+      <span class="precio">$1,500–2,000</span>
+      <p>No se compra cámara: se opera sobre la de un club o una cancha. Cubre traslados, trípode y meses de suscripción.</p>
+      <small>Riesgo bajo: si no vende, no queda un fierro parado.</small>
+    </div>
+    <div class="forma destacada">
+      <span class="estrella">Recomendado</span>
+      <span class="tag">Vender antes de comprar</span>
+      <span class="precio">Piloto</span>
+      <p>Tres equipos comprometidos y una jornada pagada. Con eso en la mano se decide si el capital compra cámara o se queda como operación.</p>
+      <small>Menos plata quemada y la inversión se mide en equipos vendidos, no en meses.</small>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="eyebrow">Lo que puede salir mal</p>
+  <h2>Cinco riesgos, sin maquillaje</h2>
+  <div class="riesgos">
+    <div class="riesgo"><i>1</i><p><b>No está probado en El Salvador.</b> Cero equipos vendidos. El costo es cierto; la demanda está por comprobar.</p></div>
+    <div class="riesgo"><i>2</i><p><b>El precio local no existe todavía.</b> Si acá pagan $40 y no $105, el equilibrio salta de 32 a 85 jornadas.</p></div>
+    <div class="riesgo"><i>3</i><p><b>La suscripción corre aunque no haya partidos.</b> Es el gasto que mata estos proyectos: equipo comprado, dos meses sin ventas, fierro guardado pagando.</p></div>
+    <div class="riesgo"><i>4</i><p><b>La tecnología ya trae el análisis.</b> El diferencial no es el algoritmo: es estar en la cancha, entregar rápido y hablar el idioma del equipo.</p></div>
+    <div class="riesgo"><i>5</i><p><b>Envío y aduana a El Salvador, sin verificar.</b> Puede sumar cientos de dólares y semanas de espera.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <p class="eyebrow">Próximo paso</p>
+  <h2>Una jornada antes de una cámara</h2>
   <div class="pasos">
-    <div class="paso"><b>01</b><span>Un equipo o una liga reserva la jornada y paga por adelantado.</span></div>
-    <div class="paso"><b>02</b><span>Se instala la cámara en la cancha: campo completo, sin operador. El equipo solo juega.</span></div>
-    <div class="paso"><b>03</b><span>El partido se procesa: estadísticas por jugador, mapas y clips automáticos.</span></div>
-    <div class="paso"><b>04</b><span>En 48 horas cada jugador recibe su ficha y su video; el equipo recibe la lectura del partido.</span></div>
+    <div class="paso"><b>01</b><p>Hablar con cinco equipos o ligas. Preguntar qué pagarían, sin vender nada.</p></div>
+    <div class="paso"><b>02</b><p>Grabar una jornada con cámara prestada o alquilada y entregar el informe completo.</p></div>
+    <div class="paso"><b>03</b><p>Con ese informe en la mano, decidir: socio de cámara, cámara propia o parar.</p></div>
   </div>
-  <h3>Por qué la cámara es de campo completo</h3>
-  <p>Una cámara que sigue el balón graba la jugada, no a los que están lejos. “Quién corrió más” exige ver a los once todo el partido. Eso es lo que separa un video bonito de un dato que el jugador paga.</p>
-</section>
-
-<section>
-  <span class="num">03 · Los números</span>
-  <h2>Cuánto cuesta entrar (y cuánto se queda)</h2>
-  <table>
-    <caption>Precios de lista en EE. UU., noviembre 2026. Antes de envío, aduana e impuestos.</caption>
-    <thead>
-      <tr><th>Ruta</th><th>Equipo</th><th>Año 1</th><th>Año 2 y siguientes</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Veo Cam 3</strong><br><span class="nota">campo completo, seguimiento por software, dato físico por jugador</span></td>
-        <td class="cifra">$1,299 cámara<br>+ $299 trípode</td>
-        <td class="cifra">$3,396</td>
-        <td class="cifra">$1,798 / año</td>
-      </tr>
-      <tr>
-        <td><strong>XbotGo Falcon</strong><br><span class="nota">sigue el balón: no mide a los que están lejos</span></td>
-        <td class="cifra">$799 cámara<br>+ $190 trípode</td>
-        <td class="cifra">≈ $1,469</td>
-        <td class="cifra">≈ $480 / año</td>
-      </tr>
-      <tr>
-        <td><strong>Ballr Standard</strong><br><span class="nota">dos lentes fijos 4K, sin suscripción base</span></td>
-        <td class="cifra">$849</td>
-        <td class="cifra">≈ $1,329</td>
-        <td class="cifra">variable</td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="nota">Veo no graba sin plan activo: Starter $999/año + Analytics 2 $799/año. Ese es el costo que se repite todos los años, aunque la cámara ya esté pagada.</p>
-
-  <div class="destacado">La cámara no es lo caro. Lo caro es la suscripción: $1,798 cada año, con o sin partidos.</div>
-
-  <h3>Punto de equilibrio</h3>
-  <p>Con una Veo completa del primer año (<strong>$3,396</strong>) y el precio de referencia chileno (<strong>$105 por jornada</strong>), el equipo se paga con <strong>≈ 32 jornadas</strong>.</p>
-  <ul>
-    <li>A 4 jornadas por mes: <strong>8 meses</strong>.</li>
-    <li>Si la misma jornada se le vende a varios equipos: <strong>la mitad del tiempo</strong>.</li>
-    <li>Arriba del punto de equilibrio, cada jornada es ingreso casi limpio: el costo fijo ya está pagado.</li>
-  </ul>
-  <p class="nota">Ojo: esos $105 son el precio del mercado chileno, con su costo de vida y su densidad de equipos. El precio en El Salvador se define con los primeros tres equipos, no antes.</p>
-</section>
-
-<section>
-  <span class="num">04 · Qué haría tu plata</span>
-  <h2>Tres formas de entrar, de menor a mayor compromiso</h2>
-  <div class="dos">
-    <div class="caja">
-      <h3>Tu plata = la cámara</h3>
-      <p><strong>Capex $3,396 el año 1.</strong> Comprás el equipo y la suscripción; Leo opera, vende y es la cara con los equipos. El ingreso por jornada se reparte: una parte paga el equipo, otra es operación.</p>
-      <p class="nota">Riesgo mayor: el fierro se deprecia y la suscripción corre igual aunque no haya partidos.</p>
-    </div>
-    <div class="caja">
-      <h3>Tu plata = el capital de arranque</h3>
-      <p><strong>≈ $1,500–2,000.</strong> No se compra nada al inicio: se opera sobre la cámara de un club o una cancha, y la plata cubre traslados, trípode, tarjetas, meses de suscripción y el tiempo hasta el primer cobro.</p>
-      <p class="nota">Riesgo menor: si el servicio no vende, no queda un fierro parado.</p>
-    </div>
-  </div>
-  <div class="caja" style="margin-top:18px">
-    <h3>Tu plata = la primera temporada</h3>
-    <p><strong>Se vende antes de comprar.</strong> Tres equipos comprometidos y una jornada piloto pagada; recién entonces se decide si el capital compra cámara propia o se queda como operación. Es la ruta que menos plata quema, y la que hace que tu inversión se mida en equipos vendidos y no en meses.</p>
-  </div>
-</section>
-
-<section>
-  <span class="num">05 · Reparto</span>
-  <h2>Quién hace qué</h2>
-  <table>
-    <thead><tr><th>Lado</th><th>Pone</th><th>Se lleva</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><strong>Irving</strong></td>
-        <td>Capital: cámara y/o arranque. Decide el monto y el techo.</td>
-        <td>Recuperación del capital primero, y luego la parte que se acuerde por escrito antes del primer partido.</td>
-      </tr>
-      <tr>
-        <td><strong>Leo</strong></td>
-        <td>Operación completa: cancha, cámara, entrega en 48 h, trato con los equipos y lectura del partido.</td>
-        <td>La parte operativa y la relación con el cliente: el equipo conoce a Leo, no a un intermediario.</td>
-      </tr>
-      <tr>
-        <td><strong>El socio de cancha</strong> <span class="nota">(si aplica)</span></td>
-        <td>La cancha con luz y espacio para el trípode, y a veces la cámara.</td>
-        <td>Un precio por jornada o un porcentaje; se negocia por cancha.</td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="nota">El reparto no está cerrado y no debería cerrarse antes de ver la primera jornada real. Lo que sí se cierra antes: quién paga la suscripción, de quién es el video y quién puede revenderlo.</p>
-</section>
-
-<section>
-  <span class="num">06 · Lo que puede salir mal</span>
-  <h2>Riesgos, sin maquillaje</h2>
-  <div class="riesgo">
-    <ul>
-      <li><strong>No está verificado que este negocio funcione en El Salvador.</strong> No hay un solo equipo vendido todavía. Todo lo de arriba es costo cierto y demanda por comprobar.</li>
-      <li><strong>El precio no está validado localmente.</strong> $105 es Chile. Si acá el equipo paga $40, el punto de equilibrio se va a 85 jornadas y el negocio cambia de forma.</li>
-      <li><strong>La suscripción corre aunque no haya partidos.</strong> Es el gasto que mata proyectos de este tipo: se compra el equipo, llegan dos meses sin ventas y el fierro queda guardado pagando.</li>
-      <li><strong>La tecnología ya trae el análisis.</strong> Veo incluye gráfico de impulso y estadísticas por jugador: el diferencial no es el algoritmo, es estar en la cancha, entregar rápido y hablar el idioma del equipo.</li>
-      <li><strong>Envío y aduana a El Salvador: sin verificar.</strong> Puede sumar cientos de dólares y semanas de espera.</li>
-    </ul>
-  </div>
-  <p>Si esos cinco puntos se aceptan como pregunta abierta y no como problema resuelto, el negocio se puede probar con poco dinero. Si alguno se da por hecho, es una forma rápida de perder el capital.</p>
-</section>
-
-<section>
-  <span class="num">07 · Lo que todavía no sé</span>
-  <h2>Lo que no voy a inventar</h2>
-  <ul>
-    <li>Si Veo despacha a El Salvador y cuánto suma el envío con aduana.</li>
-    <li>Cuánto cobra una cancha o un club local por jornada.</li>
-    <li>Cuánto está dispuesto a pagar un jugador salvadoreño por su ficha y su video.</li>
-    <li>Si los equipos juegan con la luz suficiente para grabar de noche.</li>
-  </ul>
-  <p>Los cuatro se responden con llamadas, no con más análisis. Y ninguno cuesta dinero resolverlo.</p>
 </section>
 
 <section class="cierre">
-  <span class="num">08 · Próximo paso</span>
-  <h2>Una jornada piloto antes de una cámara</h2>
-  <p>Tres cosas, en este orden, y sin comprar nada todavía:</p>
-  <ol>
-    <li>Hablar con cinco equipos o ligas. Preguntar qué pagarían, sin venderles nada.</li>
-    <li>Conseguir una jornada grabada con cámara prestada o alquilada, y entregar el informe completo.</li>
-    <li>Con ese informe en la mano, decidir entre socio de cámara, cámara propia o parar.</li>
-  </ol>
-  <p>Con esto alcanza para decidir si vale la pena poner plata: <strong>el costo de entrar es conocido y la demanda se puede medir antes de gastar</strong>.</p>
-  <p class="firma">Documento preparado en Atlas · 20 de noviembre de 2026 · cifras de lista verificadas en veo.com, xbotgo.com, footbix.com y eproducciones.cl</p>
+  <div class="wrap">
+    <p class="eyebrow">La decisión</p>
+    <p class="promesa">El costo de entrar es conocido. La demanda se puede medir antes de gastar un dólar en fierro.</p>
+    <p class="nota">Documento preparado en Atlas · 20 de noviembre de 2026 · precios de lista verificados en veo.com, xbotgo.com, footbix.com y eproducciones.cl. Nada de esto promete un retorno: describe un costo y una forma de probar la demanda.</p>
+  </div>
 </section>
 
-</div>
+<footer>
+  <div class="wrap">Video de referencia: <a href="https://www.instagram.com/reel/Df4mGVsNAJc/" target="_blank" rel="noopener">@veoprochile</a> · se muestra como ejemplo del servicio, no como material propio.</div>
+</footer>
+
+<script>
+(function(){
+  var v = document.getElementById('ref');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { v.removeAttribute('autoplay'); try { v.pause(); } catch(e){} }
+  else { v.setAttribute('autoplay',''); var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+  var dots = document.querySelectorAll('#rejilla i');
+  dots.forEach(function(d,i){ d.style.animationDelay = (i*18) + 'ms'; });
+})();
+</script>
 </body>
 </html>
